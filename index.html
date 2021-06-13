@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
 
-  <body onload="incrementCount(10)">
+  <body>
     <h1>life timer</h1>
     
     <div class="main_container" id="id_main_container">
@@ -14,11 +14,12 @@
     </div>
     
     <br>
-    <form action="/action_page.php">
-    <label for="fname">Please enter age:</label><br>
-    <input type="text" id="age"><br>
-    <input type="submit" value="confirm">
+    <form id="form1">
+    Please enter age:<br>
+    <input type="text" id="age" value=" "><br>
     </form> 
+
+    <button onclick="incrementCount()">Try it</button>
 
     <script src="timer.js"></script>
   </body>
