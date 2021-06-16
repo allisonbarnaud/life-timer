@@ -20,7 +20,10 @@ var currentTime = checkDate.getHours() + ":"
   function incrementCount(){
 
     var ageInput = parseInt(document.getElementById("age").value);
-    secondsCounter += ageInput;
+    var yearOfBirth = checkDate.getFullYear() - ageInput;
+    var yearOfDeath = yearOfBirth + lifeExpectancy;
+    var daysLeft = 365*(yearOfDeath - checkDate.getFullYear());
+    daysCounter += daysLeft;
 
     var finalDate = "End date: " + checkDate.getDate() + "/"
                 + (checkDate.getMonth()+1)  + "/" 
@@ -36,16 +39,21 @@ var currentTime = checkDate.getHours() + ":"
           display_div.removeChild(display_div.lastChild);
       }
       
-      secondsCounter++;
-      if (secondsCounter > 59) {
-        secondsCounter = 0; // reset count
-        minutesCounter++;   // increase next count
+      secondsCounter--;
+      if (secondsCounter < 0) {
+        secondsCounter = 59; // reset count
+        minutesCounter--;   // increase next count
       }
-      if (minutesCounter > 59) {
-        minutesCounter = 0;
-        hoursCounter++;
+      if (minutesCounter < 0) {
+        minutesCounter = 59;
+        hoursCounter--;
       }
-      display_str = hoursCounter.toString() + " hour(s), " + minutesCounter.toString() + " minute(s), " + secondsCounter.toString() + " second(s).";
+      if (hoursCounter < 0) {
+        hoursCounter = 23;
+        daysCounter--;
+      }
+      // add weeks, months, years, based on birthday
+      display_str = daysCounter.toString() + " Days, " + hoursCounter.toString() + " hour(s), " + minutesCounter.toString() + " minute(s), " + secondsCounter.toString() + " second(s).";
       for (var i = 0; i < display_str.length; i++) {
         var new_span = document.createElement('span');
         new_span.className = 'num_tiles';
