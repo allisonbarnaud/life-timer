@@ -1,0 +1,19 @@
+body {
+    text-align: center;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+.container {
+    display: grid;
+}
+
+button {
+    display: inline;
+}
+
+form {
+    display: inline;
+}

@@ -5,6 +5,7 @@ var hoursCounter = counter_list[2];
 var daysCounter = counter_list[3];
 var display_str = "";
 var display_div = document.getElementById("display_div_id");
+var inputArea = document.querySelector(".input-area");
 
 var lifeExpectancy = 84;
 var checkDate = new Date(); 
@@ -18,22 +19,20 @@ var currentTime = checkDate.getHours() + ":"
                 
 
   function incrementCount(){
-
+    
+    
     var ageInput = parseInt(document.getElementById("age").value);
     var yearOfBirth = checkDate.getFullYear() - ageInput;
     var yearOfDeath = yearOfBirth + lifeExpectancy;
     var daysLeft = 365*(yearOfDeath - checkDate.getFullYear());
     daysCounter += daysLeft;
-
+    inputArea.style.display = "none";
     var finalDate = "End date: " + checkDate.getDate() + "/"
                 + (checkDate.getMonth()+1)  + "/" 
                 + (checkDate.getFullYear()+lifeExpectancy-ageInput)
 
-    console.log(finalDate)
-
     setInterval(function(){
-      console.log(currentDate)
-      console.log(currentTime)
+
       // clear count
       while (display_div.hasChildNodes()) {
           display_div.removeChild(display_div.lastChild);
